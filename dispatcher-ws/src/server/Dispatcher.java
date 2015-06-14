@@ -132,8 +132,11 @@ public class Dispatcher {
 			String query = dbConn.queries.get(idQuery).getSentence();
 			PreparedStatement pst = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			//todo: add exception
-			
+			//todo: dix thisssss..
+			//if (countParameters(queries) != params.length)
+			//	throw new InvalidParameterException("The number of parameters passed doesn't match with the number of expected number of parameters");
+
+			//if (compareParameterNumbers())
 			for (int i = 0; i < params.length; i++) {
 				pst.setObject(i + 1, params[i]);
 			}

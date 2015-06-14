@@ -55,4 +55,7 @@ crashlytics-build.properties
 *.wsdl
 *.xsd
 
+# Ignore all the lib dependencies
+/lib
+
 
