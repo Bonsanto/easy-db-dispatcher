@@ -3,9 +3,13 @@ package server;
 import dependencies.*;
 import pack.*;
 
+import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Endpoint;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 import java.io.File;
 import java.io.IOException;
 import java.security.InvalidParameterException;
@@ -22,6 +26,9 @@ import java.util.logging.Level;
 public class Dispatcher {
 	private static HashMap<String, DBConnection> connections;
 	private static LogHandler logs;
+
+	@Resource
+	WebServiceContext wsContext;
 
 	//todo: Add a log register for all the queries to the dispatcher, to leave a witness of all the queries.
 	@WebMethod
@@ -132,11 +139,10 @@ public class Dispatcher {
 			String query = dbConn.queries.get(idQuery).getSentence();
 			PreparedStatement pst = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
-			//todo: dix thisssss..
-			//if (countParameters(queries) != params.length)
-			//	throw new InvalidParameterException("The number of parameters passed doesn't match with the number of expected number of parameters");
+			if (dbConn.queries.get(idQuery).countParameters() != params.length) {
+				throw new InvalidParameterException("The number of parameters passed doesn't match with the number of expected number of parameters");
+			}
 
-			//if (compareParameterNumbers())
 			for (int i = 0; i < params.length; i++) {
 				pst.setObject(i + 1, params[i]);
 			}
@@ -326,14 +332,8 @@ public class Dispatcher {
 	private int countParameters(ArrayList<Query> queries) {
 		int number = 0;
 
-		//Counts the number of ? symbols in all the queries of this transaction.
-		for (Query query : queries) {
-			String sentence = query.getSentence();
-			for (int i = 0; i < sentence.length(); i++) {
-				if (sentence.charAt(i) == '?')
-					number++;
-			}
-		}
+		for (Query query : queries)
+			number += query.countParameters();
 		return number;
 	}
 

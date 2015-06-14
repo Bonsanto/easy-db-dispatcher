@@ -444,6 +444,10 @@ public class DBConnection {
 		this.validatorClassName = validatorClassName;
 	}
 
+	public DataSource getDataSource() {
+		return dataSourceProvider;
+	}
+
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -620,11 +624,6 @@ public class DBConnection {
 			dataSourceProvider = new DataSource();
 			dataSourceProvider.setPoolProperties(poolProperties);
 		}
-	}
-
-	//probably must be synchronized
-	public DataSource getDataSource() {
-		return dataSourceProvider;
 	}
 }
 

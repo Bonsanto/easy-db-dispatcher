@@ -10,15 +10,21 @@ public class Query {
 		return sentence;
 	}
 
+	//Gets the query and cleans the query, removing the tabulators, and extra spaces.
 	public void setSentence(String sentence) {
-		this.sentence = sentence;
-		cleanQuery();
+		this.sentence = sentence.replaceAll("\t*|\n*| +", " ");
 	}
 
-	//TODO: Move this to setSentence???
-	//Cleans query to remove some special characters.
-	private void cleanQuery() {
-		this.sentence = this.sentence.replaceAll("\t+", " ").replaceAll("\n+", " ").replaceAll(" +", " ");
+	//Counts the number of parameters in the array of transactions.
+	public int countParameters() {
+		int number = 0;
+
+		//Counts the number of ? symbols in all the queries of this transaction.
+		for (int i = 0; i < this.sentence.length(); i++) {
+			if (this.sentence.charAt(i) == '?')
+				number++;
+		}
+		return number;
 	}
 
 	public Query(String sentence) {
