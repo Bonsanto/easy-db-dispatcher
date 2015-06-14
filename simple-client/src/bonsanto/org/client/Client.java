@@ -1,4 +1,6 @@
-package bonsanto.org;
+package bonsanto.org.client;
+
+import bonsanto.org.generated.*;
 
 import java.util.ArrayList;
 
