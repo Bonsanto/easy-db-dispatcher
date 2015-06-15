@@ -48,27 +48,27 @@ crashlytics.properties
 crashlytics-build.properties
 
 # Generated Files
-src/bonsanto/org/package-info.java
-src/bonsanto/org/IOException_Exception.java
-src/bonsanto/org/AnyTypeArray.java
-src/bonsanto/org/Dispatcher.java
-src/bonsanto/org/QueryJSON.java
-src/bonsanto/org/DispatcherService.java
-src/bonsanto/org/WriteSimpleCSV.java
-src/bonsanto/org/MakeTransaction.java
-src/bonsanto/org/WriteEntireCSVResponse.java
-src/bonsanto/org/QueryJSONResponse.java
-src/bonsanto/org/WriteJSON.java
-src/bonsanto/org/Dispatcher.wsdl
-src/bonsanto/org/IOException.java
-src/bonsanto/org/WriteSimpleCSVResponse.java
-src/bonsanto/org/WriteEntireCSV.java
-src/bonsanto/org/MakeTransactionResponse.java
-src/bonsanto/org/WriteJSONResponse.java
-src/bonsanto/org/ObjectFactory.java
-src/bonsanto/org/QueryDataTableResponse.java
-src/bonsanto/org/DataTable.java
-src/bonsanto/org/QueryDataTable.java
+/src/bonsanto/org/package-info.java
+/src/bonsanto/org/IOException_Exception.java
+/src/bonsanto/org/AnyTypeArray.java
+/src/bonsanto/org/Dispatcher.java
+/src/bonsanto/org/QueryJSON.java
+/src/bonsanto/org/DispatcherService.java
+/src/bonsanto/org/WriteSimpleCSV.java
+/src/bonsanto/org/MakeTransaction.java
+/src/bonsanto/org/WriteEntireCSVResponse.java
+/src/bonsanto/org/QueryJSONResponse.java
+/src/bonsanto/org/WriteJSON.java
+/src/bonsanto/org/Dispatcher.wsdl
+/src/bonsanto/org/IOException.java
+/src/bonsanto/org/WriteSimpleCSVResponse.java
+/src/bonsanto/org/WriteEntireCSV.java
+/src/bonsanto/org/MakeTransactionResponse.java
+/src/bonsanto/org/WriteJSONResponse.java
+/src/bonsanto/org/ObjectFactory.java
+/src/bonsanto/org/QueryDataTableResponse.java
+/src/bonsanto/org/DataTable.java
+/src/bonsanto/org/QueryDataTable.java
 
 #All dependencies
 /lib
