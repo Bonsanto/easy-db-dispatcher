@@ -18,3 +18,9 @@ test-client/src/bonsanto/org/WriteJSONResponse.class
 test-client/src/bonsanto/org/WriteSimpleCSV.class
 test-client/src/bonsanto/org/WriteSimpleCSVResponse.class
 test-client/src/bonsanto/org/package-info.class
+test-starter/src/org/bonsanto/ObjectFactory.class
+test-starter/src/org/bonsanto/StartTest.class
+test-starter/src/org/bonsanto/StartTestResponse.class
+test-starter/src/org/bonsanto/Test.class
+test-starter/src/org/bonsanto/TestService.class
+test-starter/src/org/bonsanto/package-info.class

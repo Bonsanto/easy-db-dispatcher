@@ -14,10 +14,10 @@ import java.util.Random;
 
 @WebService()
 public class Test {
+  private static Dispatcher d = new DispatcherService().getDispatcherPort();
 
   @WebMethod
   public void startTest(int intensity) {
-    Dispatcher d = new DispatcherService().getDispatcherPort();
     Properties p = new Properties();
     long[] times = new long[4];
     InputStream stream;
@@ -140,6 +140,11 @@ public class Test {
     Object implementor = new Test();
     String address = "http://0.0.0.0:8000/Test";
     System.out.println("http://localhost:8000/Test");
+    try {
+      System.out.println(d.queryJSON("0", "0", new ArrayList<>()));
+    } catch (IOException_Exception e) {
+      e.printStackTrace();
+    }
     Endpoint.publish(address, implementor);
   }
 }
