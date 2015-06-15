@@ -2,7 +2,6 @@ package org.bonsanto;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -10,7 +9,7 @@ public class Starter {
 	public static void main(String[] argv) {
 		//Read the endpoints.properties to get the endpoints to call.
 		Properties endpoints = new Properties();
-		InputStream stream;
+		FileInputStream stream;
 		int intensity = 10;
 
 		try {
