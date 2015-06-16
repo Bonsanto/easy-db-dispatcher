@@ -109,6 +109,7 @@ public class CSVWriter {
 	private void setAll(String path, String cs, String rs) throws IOException {
 		this.fileWriter = new FileWriter(path);
 		this.printWriter = new PrintWriter(this.fileWriter);
+		this.stb = new StringBuilder();
 		this.columnsSeparator = cs;
 		this.rowsSeparator = rs;
 	}

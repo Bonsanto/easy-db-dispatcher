@@ -7,10 +7,7 @@ import javax.xml.ws.Endpoint;
 import java.io.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 @WebService()
 public class Test {
@@ -18,6 +15,7 @@ public class Test {
 
 	@WebMethod
 	public void startTest(int intensity) {
+		ArrayList<Object> parameters = new ArrayList<>();
 		Properties p = new Properties();
 		long[] times = new long[4];
 		InputStream stream;
@@ -41,7 +39,7 @@ public class Test {
 
 		for (int i = 0; i < intensity; i++) {
 			try {
-				d.queryJSON(db, query, new ArrayList<>());
+				d.queryJSON(db, query, parameters);
 			} catch (IOException_Exception e) {
 				e.printStackTrace();
 			}
@@ -56,18 +54,23 @@ public class Test {
 		query = insertQuery[1];
 
 		//INSERT INTO pokemon VALUES(?,?) has 2 parameters.
-		ArrayList<Object> parameters = new ArrayList<>();
-		int randomId = new Random().nextInt(50000);
+		int[] randomNumbers = new int[intensity];
 		String randomName = "TestName";
-		parameters.add(randomName);
-		parameters.add(randomId);
+
+		//Generate Random integers to attempt to insert to the database
+		for (int i = 0; i < randomNumbers.length; i++) {
+			randomNumbers[i] = new Random().nextInt(500000);
+		}
 
 		//Get the time when the insert test starts.
 		times[1] = System.nanoTime();
 
-		for (int i = 0; i < intensity; i++) {
+		for (int randomNumber : randomNumbers) {
 			try {
-				d.queryJSON(db, query, new ArrayList<>());
+				parameters.clear();
+				parameters.add(randomNumber);
+				parameters.add(randomName);
+				d.queryJSON(db, query, parameters);
 			} catch (IOException_Exception e) {
 				e.printStackTrace();
 			}
@@ -78,17 +81,17 @@ public class Test {
 
 		//UPDATE pokemon SET na_pokemon = ? WHERE id_pokemon = ?
 		String[] updateQuery = p.getProperty("updateQuery").split(",");
-		parameters.clear();
-		parameters.add(randomName + randomId);
-		parameters.add(randomId);
 		db = updateQuery[0];
 		query = updateQuery[1];
 
 		//Get the time when the update test starts.
 		times[2] = System.nanoTime();
 
-		for (int i = 0; i < intensity; i++) {
+		for (int randomNumber : randomNumbers) {
 			try {
+				parameters.clear();
+				parameters.add(randomName + randomNumber);
+				parameters.add(randomNumber);
 				d.queryJSON(db, query, parameters);
 			} catch (IOException_Exception e) {
 				e.printStackTrace();
@@ -100,16 +103,16 @@ public class Test {
 
 		//DELETE FROM pokemon WHERE id_pokemon=?
 		String[] deleteQuery = p.getProperty("deleteQuery").split(",");
-		parameters.clear();
-		parameters.add(randomId);
 		db = deleteQuery[0];
 		query = deleteQuery[1];
 
 		//Get the time when the delete test starts.
 		times[3] = System.nanoTime();
 
-		for (int i = 0; i < intensity; i++) {
+		for (int randomNumber : randomNumbers) {
 			try {
+				parameters.clear();
+				parameters.add(randomNumber);
 				d.queryJSON(db, query, parameters);
 			} catch (IOException_Exception e) {
 				e.printStackTrace();
@@ -124,12 +127,14 @@ public class Test {
 		for (long l : times) result += l;
 
 		try {
-			CSVWriter csvWriter = new CSVWriter("testResult" + new Date() + ".csv");
-			csvWriter.append("SELECT TEST," + times[0] / 1000000000);
-			csvWriter.append("INSERT TEST," + times[1] / 1000000000);
-			csvWriter.append("UPDATE TEST," + times[2] / 1000000000);
-			csvWriter.append("DELETE TEST," + times[3] / 1000000000);
-			csvWriter.append("RESULT TEST," + result / 1000000000);
+			Calendar cal = Calendar.getInstance();
+			CSVWriter csvWriter = new CSVWriter(cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) +
+					"-" + cal.get(Calendar.DATE) + new Random().nextInt(5000) + "testresult.csv");
+			csvWriter.append("SELECT TEST", String.valueOf((times[0] / 1000000000.0)));
+			csvWriter.append("INSERT TEST", String.valueOf((times[1] / 1000000000.0)));
+			csvWriter.append("UPDATE TEST", String.valueOf((times[2] / 1000000000.0)));
+			csvWriter.append("DELETE TEST", String.valueOf((times[3] / 1000000000.0)));
+			csvWriter.append("RESULT TEST", String.valueOf((result / 1000000000.0)));
 			csvWriter.write();
 		} catch (IOException e) {
 			e.printStackTrace();

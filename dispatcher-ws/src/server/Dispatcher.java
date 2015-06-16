@@ -168,6 +168,7 @@ public class Dispatcher {
 					jsonBuilder.addAttribute("message", "The query didn't retrieve data, because it didn't have a SELECT");
 			}
 
+
 			//Close everything
 			close(pst, conn);
 		} catch (Exception e) {
