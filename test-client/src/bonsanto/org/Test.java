@@ -129,7 +129,7 @@ public class Test {
 		try {
 			Calendar cal = Calendar.getInstance();
 			CSVWriter csvWriter = new CSVWriter(cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) +
-					"-" + cal.get(Calendar.DATE) + new Random().nextInt(5000) + "testresult.csv");
+					"-" + cal.get(Calendar.DATE) + "-" + new Random().nextInt(5000) + "testresult.csv");
 			csvWriter.append("SELECT TEST", String.valueOf((times[0] / 1000000000.0)));
 			csvWriter.append("INSERT TEST", String.valueOf((times[1] / 1000000000.0)));
 			csvWriter.append("UPDATE TEST", String.valueOf((times[2] / 1000000000.0)));
