@@ -130,11 +130,11 @@ public class Test {
 			Calendar cal = Calendar.getInstance();
 			CSVWriter csvWriter = new CSVWriter(cal.get(Calendar.YEAR) + "-" + (cal.get(Calendar.MONTH) + 1) +
 					"-" + cal.get(Calendar.DATE) + "-" + new Random().nextInt(5000) + "testresult.csv");
-			csvWriter.append("SELECT TEST", String.valueOf((times[0] / 1000000000.0)));
-			csvWriter.append("INSERT TEST", String.valueOf((times[1] / 1000000000.0)));
-			csvWriter.append("UPDATE TEST", String.valueOf((times[2] / 1000000000.0)));
-			csvWriter.append("DELETE TEST", String.valueOf((times[3] / 1000000000.0)));
-			csvWriter.append("RESULT TEST", String.valueOf((result / 1000000000.0)));
+			csvWriter.append("SELECT queryJSON TEST", String.valueOf((times[0] / 1000000000.0)));
+			csvWriter.append("INSERT queryJSON TEST", String.valueOf((times[1] / 1000000000.0)));
+			csvWriter.append("UPDATE queryJSON TEST", String.valueOf((times[2] / 1000000000.0)));
+			csvWriter.append("DELETE queryJSON TEST", String.valueOf((times[3] / 1000000000.0)));
+			csvWriter.append("RESULT queryJSON TEST", String.valueOf((result / 1000000000.0)));
 			csvWriter.write();
 		} catch (IOException e) {
 			e.printStackTrace();
