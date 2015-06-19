@@ -20,8 +20,8 @@ public class Starter {
 			String[] urls = endpoints.getProperty("endpoints").split(",");
 
 			for (String url : urls) {
-				Test service = new TestService(new URL(url)).getTestPort();
-				service.startTest(intensity);
+				Runnable requester = new RequesterThread(url, intensity);
+				new Thread(requester).start();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
