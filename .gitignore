@@ -25,3 +25,7 @@ test-starter/src/org/bonsanto/Test.class
 test-starter/src/org/bonsanto/TestService.class
 test-starter/src/org/bonsanto/package-info.class
 *.csv
+*.json
+*.html
+test-analysis/bower_components/
+*.pdf
