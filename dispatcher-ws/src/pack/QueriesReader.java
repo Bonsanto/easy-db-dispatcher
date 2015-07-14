@@ -48,7 +48,7 @@ public class QueriesReader {
 		return this.conns;
 	}
 
-	private void readSimpleQuery(Node node) {
+	private void readSimpleQuery(Node node) throws Exception {
 		Node parent = node.getParentNode();
 
 		//Used to get the id of the query.
@@ -60,6 +60,9 @@ public class QueriesReader {
 		//Sentences for the queries.
 		String sentence = ((DeferredTextImpl) node).getData();
 
-		this.conns.get(db).queries.put(id, new Query(sentence));
+		if (!this.conns.containsKey(db))
+			throw new Exception("DB wasn't declared in connections.xml");
+		else
+			this.conns.get(db).queries.put(id, new Query(sentence));
 	}
 }
