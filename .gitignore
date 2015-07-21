@@ -30,3 +30,4 @@ test-starter/src/org/bonsanto/package-info.class
 test-analysis/bower_components/
 *.pdf
 *.tmp
+*.png
